@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -6,6 +9,11 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using Debcenter.Models;
+using Microsoft.IdentityModel.Protocols;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Jwt;
+using Microsoft.Owin.Security.OAuth;
+using Microsoft.Owin.Security.OpenIdConnect;
 
 namespace Debcenter
 {
@@ -30,11 +38,12 @@ namespace Debcenter
                 {
                     // Enables the application to validate the security stamp when the user logs in.
                     // This is a security feature which is used when you change a password or add an external login to your account.  
-                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
-                        validateInterval: TimeSpan.FromMinutes(30),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
+                    OnValidateIdentity =
+                        SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
+                            validateInterval: TimeSpan.FromMinutes(30),
+                            regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
@@ -63,6 +72,58 @@ namespace Debcenter
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+            app.UseCookieAuthentication(new CookieAuthenticationOptions {
+                AuthenticationType = CookieAuthenticationDefaults.AuthenticationType,
+                LoginPath = new PathString("/Home/Login"),
+
+
+            });
+            app.SetDefaultSignInAsAuthenticationType(CookieAuthenticationDefaults.AuthenticationType);
+
+            app.UseOpenIdConnectAuthentication(new OpenIdConnectAuthenticationOptions {
+                Authority = "https://identity.fhict.nl",
+                ClientId = "i349135-debcenter",
+                SignInAsAuthenticationType = CookieAuthenticationDefaults.AuthenticationType,
+                Notifications = new OpenIdConnectAuthenticationNotifications {
+                    AuthenticationFailed = faildMsg => {
+                        if (faildMsg.Exception is OpenIdConnectProtocolInvalidNonceException) {
+                            if (faildMsg.Exception.Message.Contains("IDX10311")) {
+                                faildMsg.SkipToNextMiddleware();
+                            }
+                        }
+                        return Task.FromResult(0);
+                    }
+                },
+                Scope = "openid profile",
+                ResponseType = "id_token",
+                RedirectUri = "https://debcenter.nl",
+                UseTokenLifetime = false
+            });
+            app.UseOpenIdConnectAuthentication(new OpenIdConnectAuthenticationOptions() {
+                Authority = "https://identity.fhict.nl",
+                ClientId = "i349135-debcenter",
+                //    ClientSecret = "OKsefd34tergd",
+                Caption = "Fontys OpenID",
+                // Scope = "openid",
+                SignInAsAuthenticationType = CookieAuthenticationDefaults.AuthenticationType,
+                AuthenticationType = CookieAuthenticationDefaults.AuthenticationType,
+                Notifications = new OpenIdConnectAuthenticationNotifications {
+                    AuthenticationFailed = faildMsg => {
+                        if (faildMsg.Exception is OpenIdConnectProtocolInvalidNonceException) {
+                            if (faildMsg.Exception.Message.Contains("IDX10311")) {
+                                faildMsg.SkipToNextMiddleware();
+                            }
+                        }
+                        return Task.FromResult(0);
+                    }
+                },
+                //ProtocolValidator = new OpenIdConnectProtocolValidator() {
+                //    RequireNonce = false,
+                //},
+                ResponseType = "id_token",
+                UseTokenLifetime = false,
+                RedirectUri = "https://debcenter.nl"
+            });
         }
     }
 }

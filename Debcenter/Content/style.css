@@ -1,0 +1,450 @@
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    /*background-color: green;*/
+    min-height: 100%;
+}
+
+header {
+    /*flex: 1;*/
+    display: flex;
+    /*background: url(images/bg2.jpg);*/
+    background-color: #bae3ff;
+    height: 330px;
+    transition: height 2s;
+}
+.centrewrapper {
+    flex: 1;
+    /*background-color: green;*/
+    display: flex;
+}
+
+aside {
+    flex: 0.75;
+    /* background-color: red;*/
+    transition: flex 2s;
+}
+
+progress {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+progress::-webkit-progress-bar {
+    background-color: red;
+}
+progress::-webkit-progress-value {
+     background-color: limegreen;
+ }
+
+.argumentFor {
+    background: limegreen;
+    box-shadow: 0px 0px 40px green inset;
+    font-family: 'Open Sans';
+    border-radius: 20px;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    border-top-left-radius: 0px;
+}
+
+.votes {
+    display: inline;
+}
+
+.argumentAgainst {
+    background: orangered;
+    box-shadow: 0px 0px 40px red inset;
+    font-family: 'Open Sans';
+    margin: 5px;
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    border-top-right-radius: 0px;
+    color: white;
+}
+
+.argumentForVotes {
+    position: absolute;
+    top: 0;
+    left: 10px;
+}
+
+.argumentAgainstVotes {
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+.middleShadow {
+    box-shadow: 3px 1px 15px black;
+}
+
+main {
+    flex: 2;
+    background: white;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding-bottom:20px;
+}
+
+main:before {
+    background:white;
+    display:block;
+    content:".";
+    font-size:0;
+    width: 100%;
+    height:10px; /* Height of #one */
+    position:absolute;
+    left: 0;
+    top:0;
+    z-index: 2;
+}
+
+.Content {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0px;
+    flex-wrap: wrap;
+    flex-flow: row wrap;
+    flex-direction: row;
+    justify-content: center;
+    /*background-color: aquamarine;*/
+}
+
+.ContentItem {
+    background: #bae3ff;
+    padding: 5px 20px 40px 20px;
+    width: 400px;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    font-family: 'Roboto';
+}
+
+.search {
+    width: 860px;
+}
+.ContentHeader {
+    border-bottom: 2px;
+    text-align: center;
+    font-family: 'Roboto';
+}
+.inline {
+    display: inline;
+}
+.inlineFlex {
+    display: inline-flex;
+}
+.searchHeight {
+    line-height: 47.7px;
+}
+.noPadding {
+    padding: 0;
+}
+.noMargin {
+    margin: 0;
+}
+
+nav {
+    flex: 0;
+    display: flex;
+    margin-top: -67px; /* trying to go for the paper look. pls overlay..*/
+}
+
+.navItems {
+    background: white;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    border-bottom: 1px;
+    border-bottom-color: silver;
+    border-bottom-style: solid;
+    padding: 0px;
+    justify-content: center;
+    text-align: center;
+    flex: 2;
+    position: relative;
+    z-index: 1;
+    font-family: 'Roboto';
+    font-size: 15px;
+}
+.navItems > li {
+    flex: 1;
+    background: white;
+    transition: background 0.5s;
+}
+.navItems li:hover {
+    background: silver;
+    transition: background 0.5s;
+}
+.selectedItem {
+    background: silver !important;
+}
+
+.ContentItem:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.logo {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.logoSpace {
+    flex: 1;
+}
+
+.logoText {
+    flex: 3;
+    background-image: url("./images/Logo.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.headerWhiteSpace {
+    flex: 3;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login > input {
+    flex: 1;
+    height: 40px;
+    margin-top: 5px;
+    width: 80%;
+    border: 0;
+    text-align: center;
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.submitButton {
+    flex: 1;
+    height: 40px;
+    margin-top: 5px;
+    width: 80%;
+    border: 0;
+    text-align: center;
+    border-bottom: 1px solid #d8d8d8;
+    width: 80%;
+    height: 40px;
+    transition: background 3s, color 3s, background-color 2s;
+}
+
+.edit {
+    flex: 1;
+    height: 40px;
+    margin-top: 5px;
+    width: 80%;
+    border: 0;
+    text-align: center;
+    border-bottom: 1px solid #d8d8d8;
+    width: 80%;
+    height: 40px;
+    transition: background 3s, color 3s, background-color 2s;
+}
+
+.edit:active {
+    /*    background-color: green;*/
+    color: transparent;
+    background: transparent;
+    overflow: hidden;
+    position: relative;
+    /*background: url("https://openclipart.org/image/2400px/svg_to_png/179419/felipecaparelli-wajeemba-Gear-white-nostroke.png");*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: green;
+}
+
+.edit.loading {
+    /*    background: green;*/
+    background: transparent;
+    color: transparent;
+    pointer-events: none;
+    overflow: hidden;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: green;
+}
+
+.edit.loading::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    z-index: -1;
+    background: url("https://openclipart.org/image/2400px/svg_to_png/179419/felipecaparelli-wajeemba-Gear-white-nostroke.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: green;
+    animation: rotate 2s infinite;
+}
+.submitButton:active {
+    /*    background-color: green;*/
+    color: transparent;
+    background: transparent;
+    overflow: hidden;
+    position: relative;
+    /*background: url("https://openclipart.org/image/2400px/svg_to_png/179419/felipecaparelli-wajeemba-Gear-white-nostroke.png");*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: green;
+}
+
+.submitButton.loading {
+    /*    background: green;*/
+    background: transparent;
+    color: transparent;
+    pointer-events: none;
+    overflow: hidden;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: green;
+}
+
+.submitButton.loading::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    z-index: -1;
+    background: url("https://openclipart.org/image/2400px/svg_to_png/179419/felipecaparelli-wajeemba-Gear-white-nostroke.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: green;
+    animation: rotate 2s infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.register-input:focus {
+    border-color: #0022e6;
+    outline: 0;
+}
+
+footer {
+    flex: 1;
+    /*background-color: blue;*/
+    position: relative;
+    min-height: 50px;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.copyright {
+    text-align: center;
+    font-family: 'Open Sans';
+    width: 100%;
+    position: absolute;
+    bottom: 3px;
+}
+
+.replyButtonFor {
+    font-family: 'Open Sans';
+    position: absolute;
+    right: 7px;
+    top: 0;
+    height: 100%;
+    /*border-left-color: darkgreen;*/
+    /*border-left-style: solid;*/
+    /*color: greenyellow;*/
+    /*padding-right: 10px;*/
+    text-align: center;
+}
+
+.replyButtonAgainst {
+    font-family: 'Open Sans';
+    position: absolute;
+    left: 7px;
+    top: 0;
+    height: 100%;
+    /*border-left-color: darkgreen;*/
+    /*border-left-style: solid;*/
+    /*color: greenyellow;*/
+    /*padding-right: 10px;*/
+    text-align: center;
+}
+
+.replyBox {
+    display: none;
+    height: 50px;
+    width: 100%;
+    background: white;
+    border-radius: 20px;
+    margin-top: 10px;
+    border-style: none;
+    outline: none;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.redInnerShadow {
+    box-shadow: 0px 0px 10px red inset;
+    border-top-right-radius: 0;
+}
+.greenInnerShadow {
+    box-shadow: 0px 0px 10px limegreen inset;
+    border-top-left-radius: 0;
+}
+@media only screen and (max-width: 1670px) {
+    aside {
+        flex: 0.5;
+        transition: flex 2s;
+    }
+}
+@media only screen and (max-width: 1400px) {
+    aside {
+        flex: 0.25;
+        transition: flex 2s;
+    }
+}
+@media only screen and (max-width: 1200px) {
+    aside {
+        flex: 0;
+        transition: flex 2s;
+    }
+    header {
+        height: 250px;
+        transition: height 2s;
+    }
+}

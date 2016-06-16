@@ -26,5 +26,11 @@ namespace Debcenter.Controllers
 
             return View();
         }
+
+        public ActionResult Index2()
+        {
+            ViewBag.Message = "This fucking page.";
+            return View();
+        }
     }
 }

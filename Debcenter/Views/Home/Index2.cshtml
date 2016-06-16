@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Index2";
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    @Styles.Render("~/Content/css")
+    <link href='https://fonts.googleapis.com/css?family=Roboto|Open+Sans' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <aside></aside>
+            <div class="logo">
+                <div class="logoSpace"></div>
+                <div class="logoText"></div>
+                <div class="logoSpace"></div>
+            </div>
+            <aside></aside>
+        </header>
+        <nav>
+            <aside></aside>
+            <ul class="navItems middleShadow">
+                <li><a href="stellingen.html"><h1>Stellingen</h1></a></li>
+                <li class="selectedItem"><a href="gebruikers.html"><h1>Gebruikers</h1></a></li>
+            </ul>
+            <aside></aside>
+        </nav>
+        <div class="centrewrapper">
+            <aside></aside>
+            <main class="middleShadow">
+                <ul class="Content">
+                    <!--<li class="ContentItem search noPadding noMargin searchHeight"><div class="ContentHeader inline search">Search</div>-->
+                    <!--<form class="login inlineFlex"><input type="text" title="search" placeholder="Boris"></form></li>-->
+                    <li class="ContentItem">
+                        <div class="ContentHeader"><h1>Thomas-Vino</h1></div>
+                        <form class="login">
+                            Dit is een tijdelijke pagina.
+                            Het is op dit moment onbekend of deze nog nodig zal blijven en zoja wat hier in komt.
+                            Waarschijnlijk gaan wij gebruik maken van de fontys api, en hebben wij dan dus geen account systeem meer. Wel houden wij bij of de gebruiker een admin is.
+                            <h1>Admin</h1><input type="checkbox">
+                            <button type="button" class="edit" value="Edit">Edit</button> <!--remove type=button for prod use-->
+
+                        </form>
+                    </li>
+                    </li>
+                </ul>
+            </main>
+            <script>
+            jQuery(".edit").click(function () {
+                console.log("1 ok!");
+                if (jQuery(this).class != "loading") {
+                    console.log("2 ok!");
+                    jQuery(this).toggleClass('loading');
+                }
+            });
+            jQuery(".edit")
+                    .on("transitionend",
+                            function($e){
+                                window.location = "./edit.html";
+                                jQuery(this).off($e);
+                            });
+            </script>
+            <aside></aside>
+        </div>
+        <footer>
+            <div class="copyright">Copyright(c) Debcenter</div>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+</body>
+</html>
